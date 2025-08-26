@@ -1,6 +1,6 @@
 addLayer("w", {
     name: "prestige", // This is optional, only used in a few places, If absent it just uses the layer id.
-    symbol: ":3", // This appears on the layer's node. Default is the id with the first letter capitalized
+    symbol: "W", // This appears on the layer's node. Default is the id with the first letter capitalized
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
@@ -29,15 +29,22 @@ addLayer("w", {
         11: {
           title: "Denial",
           description: '"Im not a furry!" x2 Furry Points',
-          cost: new Decimal(10),
+          cost: new Decimal(2),
         },
         12: {
-            title: "Oh god theyre multiplying",
+            title: "Reproduction",
             description: "2x wickerbeasts",
-            cost: new Decimal(50),
-            effect: {
-
-            }
+            cost: new Decimal(5),
+        },
+        13: {
+            title: "Oh god they're multiplying",
+            description: "Wickerbeasts reproduce faster the more of a furry you are",
+            cost: new Decimal(15),
+            effect() {
+                let eff = player.points.plus(1).log10().cbrt().plus(1);
+                return eff
+            },
+            effectDisplay() { return format(tmp.w.upgrades[13].effect)+"x wickerbeasts" },
         }
     },
     layerShown(){return true}
