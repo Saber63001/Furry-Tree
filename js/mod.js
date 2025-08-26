@@ -1,7 +1,7 @@
 let modInfo = {
 	name: "The ??? Tree",
 	author: "Saber6301",
-	pointsName: "points",
+	pointsName: "Furry Points",
 	modFiles: ["layers.js", "tree.js"],
 
 	discordName: "",
@@ -41,7 +41,7 @@ function getPointGen() {
 		return new Decimal(0)
 
 	let gain = new Decimal(1)
-	if (hasUpgrade("uwu", 11)) gain = gain.times(2)
+	if (hasUpgrade("w", 11)) gain = gain.times(2)
 	return gain
 }
 
@@ -55,7 +55,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("69"))
+	return player.w.points.gte(new Decimal("10"))
 }
 
 
