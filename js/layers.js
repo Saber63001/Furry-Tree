@@ -16,7 +16,8 @@ addLayer("w", {
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
         if (hasUpgrade("w",12)) mult = mult.times(2);
-        if (hasUpgrade("w",13)) mult = mult.times(upgradeEffect("w", 13))
+        if (hasUpgrade("w",13)) mult = mult.times(upgradeEffect("w", 13));
+        if (hasUpgrade("w",21)) mult = mult.times(upgradeEffect("w", 21))
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -56,7 +57,30 @@ addLayer("w", {
                 return eff
             },
             effectDisplay() { return format(tmp.w.upgrades[14].effect)+"x points" },
-        }
+        },
+        15: {
+             title: "Spread",
+            description: "The pathowogen spreads. Furry points boost themselves",
+            cost: new Decimal(50),
+            effect() {
+                let eff = player.points.plus(1).log10().cbrt().plus(1).times(0.5);
+                return eff
+            },
+            effectDisplay() { return format(tmp.w.upgrades[15].effect)+"x points" },
+        },
+
+
+
+        21: {
+             title: "WICKERS??!!?!?!?!",
+            description: "Some wickerbeasts can reproduce without a partner. (Wickerbeasts boosts themselves)",
+            cost: new Decimal(100),
+            effect() {
+                let eff = player.points.plus(1).log10().cbrt().plus(1).times(0.5);
+                return eff
+            },
+            effectDisplay() { return format(tmp.w.upgrades[15].effect)+"x wickerbeasts" },
+        },
     },
     layerShown(){return true}
 })
