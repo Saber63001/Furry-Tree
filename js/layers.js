@@ -15,7 +15,8 @@ addLayer("w", {
     exponent: 0.5, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
-        if (hasUpgrade("w",12)) mult = mult.times(2)
+        if (hasUpgrade("w",12)) mult = mult.times(2);
+        if (hasUpgrade("w",13)) mult = mult.times(upgradeEffect("w", 13))
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -45,6 +46,16 @@ addLayer("w", {
                 return eff
             },
             effectDisplay() { return format(tmp.w.upgrades[13].effect)+"x wickerbeasts" },
+        },
+        14: {
+             title: "Cuddles!",
+            description: "The wickerbeasts cuddle you making you more of a furry",
+            cost: new Decimal(35),
+            effect() {
+                let eff = player.w.points.plus(1).log10().cbrt().plus(1).times(2);
+                return eff
+            },
+            effectDisplay() { return format(tmp.w.upgrades[14].effect)+"x points" },
         }
     },
     layerShown(){return true}
