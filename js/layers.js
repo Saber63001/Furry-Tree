@@ -60,10 +60,10 @@ addLayer("w", {
         },
         15: {
              title: "Spread",
-            description: "The pathowogen spreads. Furry points boost themselves",
+            description: "The pathowogen spreads. (Furry points boost themselves)",
             cost: new Decimal(50),
             effect() {
-                let eff = player.points.plus(1).log10().cbrt().plus(1).times(0.5);
+                let eff = player.points.plus(1).log10().cbrt().plus(1);
                 return eff
             },
             effectDisplay() { return format(tmp.w.upgrades[15].effect)+"x points" },
@@ -72,14 +72,15 @@ addLayer("w", {
 
 
         21: {
-             title: "WICKERS??!!?!?!?!",
+             title: "WICKERS??!!?",
             description: "Some wickerbeasts can reproduce without a partner. (Wickerbeasts boosts themselves)",
             cost: new Decimal(100),
             effect() {
-                let eff = player.points.plus(1).log10().cbrt().plus(1).times(0.5);
+                let eff = player.w.points.plus(1).log10().cbrt().plus(1);
                 return eff
             },
-            effectDisplay() { return format(tmp.w.upgrades[15].effect)+"x wickerbeasts" },
+            effectDisplay() { return format(tmp.w.upgrades[21].effect)+"x wickerbeasts" },
+            unlocked() {return hasUpgrade("w", 15)}
         },
     },
     layerShown(){return true}
