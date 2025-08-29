@@ -2,7 +2,7 @@ let modInfo = {
 	name: "The Furry Tree",
 	author: "Saber6301",
 	pointsName: "Furry Points",
-	modFiles: ["layers.js", "tree.js"],
+	modFiles: ["w.js", "f.js", "tree.js", "achievements.js"],
 
 	discordName: "",
 	discordLink: "",
@@ -13,12 +13,15 @@ let modInfo = {
 // Set your version in num and name
 let VERSION = {
 	num: "0.0.1",
-	name: "Literally nothing",
+	name: "In the beninging",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
 	<h3>v0.0.1</h3><br>
-		Actually started this thing lol`
+		-Added wickers and foxes.<br>
+		-Added some achievements<br>
+		Endgame: 2500 Foxes`
+
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 
@@ -43,7 +46,11 @@ function getPointGen() {
 	let gain = new Decimal(1)
 	if (hasUpgrade("w", 11)) gain = gain.times(2);
 	if (hasUpgrade("w", 14)) gain = gain.times(upgradeEffect("w", 14));
-	if (hasUpgrade("w", 15)) gain = gain.times(upgradeEffect("w", 15))
+	if (hasUpgrade("w", 15)) gain = gain.times(upgradeEffect("w", 15));
+	if (hasUpgrade("w", 22)) gain = gain.times(4);
+	if (hasUpgrade("w", 24)) gain = gain.times(1.5);
+	if (hasUpgrade("f", 11)) gain = gain.times(2);
+	if (hasUpgrade("f", 14)) gain = gain.times(upgradeEffect("f", 14));
 	return gain
 }
 
@@ -57,7 +64,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.w.points.gte(new Decimal("1000"))
+	return player.f.points.gte(new Decimal("2500"))
 }
 
 
